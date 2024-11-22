@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://bmmx2fsdqe7sc"]
+
+[ext_resource type="PackedScene" uid="uid://imriuqh4it78" path="res://data/tscn/player.tscn" id="1_4mdkl"]
+[ext_resource type="Texture2D" uid="uid://dnt6pbyksu7vx" path="res://data/Texture/map/JunkYardTest.png" id="1_fl77i"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="JunkYardTest" type="Sprite2D" parent="."]
+position = Vector2(1008, 649)
+texture = ExtResource("1_fl77i")
+
+[node name="Player" parent="." instance=ExtResource("1_4mdkl")]
+position = Vector2(957, 814)
