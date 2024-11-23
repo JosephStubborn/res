@@ -47,6 +47,8 @@ func _physics_process(delta):
 
 		#Тут скорость по вертикали поправить
 		velocity = velocity.normalized() * min(velocity.length(), max_velocity)
+		if velocity.length() > 0:
+			velocity = velocity.normalized().round()
 		move_and_collide(velocity)
 
 func _process(delta: float) -> void:
