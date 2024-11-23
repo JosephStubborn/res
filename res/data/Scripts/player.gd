@@ -37,42 +37,38 @@ func _physics_process(delta):
 				if (last_velocity == velocity):
 					is_running = true
 				
-		direction = Input.get_vector("left", "right", "up", "down").round()
+		direction = Input.get_vector("left", "right", "up", "down").normalized()
 		if direction && !is_running:
 			velocity = direction * speed
 		elif direction && is_running:
-			velocity = direction * speed * 2
+			velocity = direction * speed * (2 if is_running else 1)
 		else:
 			velocity =  Vector2.ZERO
 
-			#Тут скорость по вертикали поправить
-		if velocity.length_squared() >= max_velocity * max_velocity:
-			velocity = velocity.limit_length(max_velocity).ceil()
+		#Тут скорость по вертикали поправить
+		velocity = velocity.normalized() * min(velocity.length(), max_velocity)
 		move_and_collide(velocity)
 
 func _process(delta: float) -> void:
-	match direction:
-		Vector2(1,0): #view right
+	var rounded_direction = direction.round()
+	match rounded_direction:
+		Vector2(1, 0): # view right
 			$AnimatedSprite2D.animation = "walk_right"
-			$AnimatedSprite2D.play("walk_right")
-		Vector2(-1,0):#view left
+		Vector2(-1, 0): # view left
 			$AnimatedSprite2D.animation = "walk_left"
-			$AnimatedSprite2D.play("walk_left")
-		Vector2(0,1):#view down
+		Vector2(0, 1): # view down
 			$AnimatedSprite2D.animation = "walk_down"
-			$AnimatedSprite2D.play("walk_down")
-		Vector2(0,-1):#view up
+		Vector2(0, -1): # view up
 			$AnimatedSprite2D.animation = "walk_up"
-			$AnimatedSprite2D.play("walk_up")
-		Vector2(1,-1):#view right up
+		Vector2(1, -1): # view right up
 			$AnimatedSprite2D.animation = "walk_upright"
-			$AnimatedSprite2D.play("walk_upright")
-		Vector2(1, 1):#view right down
+		Vector2(1, 1): # view right down
 			$AnimatedSprite2D.animation = "walk_downright"
-			$AnimatedSprite2D.play("walk_downright")
-		Vector2(-1,-1):#view left up
+		Vector2(-1, -1): # view left up
 			$AnimatedSprite2D.animation = "walk_upleft"
-			$AnimatedSprite2D.play("walk_upleft")
-		Vector2(-1,1):#view left down
+		Vector2(-1, 1): # view left down
 			$AnimatedSprite2D.animation = "walk_downleft"
-			$AnimatedSprite2D.play("walk_downleft")
+		_:
+			$AnimatedSprite2D.stop()
+
+	$AnimatedSprite2D.play()
