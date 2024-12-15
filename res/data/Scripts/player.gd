@@ -9,6 +9,7 @@ var timer = null
 var is_doubble_click = false
 var is_running = false
 var max_velocity = 2.0
+var collision_object =  null
 func _ready():
 	#$EzDialogue.start_dialogue(dialogue_json, state)
 	
@@ -49,8 +50,19 @@ func _physics_process(delta):
 		velocity = velocity.normalized() * min(velocity.length(), max_velocity)
 		if velocity.length() > 0:
 			velocity = velocity.normalized().round()
-		move_and_collide(velocity)
-
+		var collision = move_and_collide(velocity)
+		
+		#Обработка коллизий
+		if collision and Input.is_key_pressed(KEY_ENTER):
+			collision_object = collision.get_collider()
+			#collision_object.interact()
+		elif collision:
+			#Здесь выделение объёкта для взаимодействия
+			pass
+		else:
+			collision_object = null
+			
+			
 func _process(delta: float) -> void:
 	var rounded_direction = direction.round()
 	match rounded_direction:

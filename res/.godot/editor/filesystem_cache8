@@ -1,0 +1,15 @@
+ea4bc82a6ad023ab7ee23ee620429895
+::res://::1734260900
+icon.svg::CompressedTexture2D::6395297813944755610::1732372262::1732372400::1::::<><>::
+::res://data/::1732372262
+::res://data/Scripts/::1734252076
+player.gd::GDScript::-1::1734252076::0::1::::<>CharacterBody2D<>::
+::res://data/Texture/::1732372262
+::res://data/Texture/character/::1732372400
+inrik.png::CompressedTexture2D::8917699340045420276::1732372262::1732372400::1::::<><>::
+::res://data/Texture/map/::1732372400
+JunkYardTest.png::CompressedTexture2D::8112849299463081953::1732372262::1732372400::1::::<><>::
+::res://data/tscn/::1732372421
+demo_level.tscn::PackedScene::3254904338248380518::1732372421::0::1::::<><>::uid://imriuqh4it78::::res://data/tscn/player.tscn<>uid://dnt6pbyksu7vx::::res://data/Texture/map/JunkYardTest.png
+Main_menu.tscn::PackedScene::5712485633805403463::1732372421::0::1::::<><>::
+player.tscn::PackedScene::587330832922258205::1732372262::0::1::::<><>::uid://d0b2g8ixoko6o::::res://data/Texture/character/inrik.png<>res://data/Scripts/player.gd
